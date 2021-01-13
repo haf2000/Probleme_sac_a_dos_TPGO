@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Problème du sac à dos</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom Fonts -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link href="css/stylish-portfolio.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,800" rel="stylesheet">
+<style>
+    body {
+      font-family: 'Montserrat', sans-serif;
+    }
+  </style>
+</head>
+
+<body id="page-top">
+
+  <!-- Header -->
+  <header class="masthead d-flex">
+    <div class="container text-center my-auto">
+      <h1 class="mb-1" style="color: white;">Problème du sac à dos</h1>
+      <h3 class="mb-5">
+        <em style="font-weight: lighter;">En utilisant la programmation dynamique</em>
+      </h3>
+      <a class="btn btn-primary btn-xl js-scroll-trigger" href="#portfolio">Commençons maintenant!</a>
+    </div>
+    <div class="overlay"></div>
+  </header>
+
+
+
+  <!-- Portfolio -->
+  <section class="content-section" id="portfolio">
+    <div class="container mt-n5">
+       <div class="row text-center content-section-heading justify-content-center">     
+          <h1 class="text-secondary mb-0">Solution du problème du sac à dos</h1>
+        </div>
+      
+       <!-- Code de la partie solution du probleme -->
+           
+        <div class="row">
+          
+            <div class="col-md-5 mt-5">
+                <div class="row justify-content-center">
+                        <h6 class="text-success">Affichage de la solution :</h6><br>
+                    </div>
+                <div class="row justify-content-center align-items-left mt-5" id="resultat_final3" style="display: none;" role="alert">
+                 <!-- Affichage de la matrice -->
+                </div>
+
+                 <div class="row my-4 justify-content-center">
+                    <div id="resultat_final" style="display: none;" class="alert alert-info font-weight-light" role="alert">
+                      <!-- Affichage de la valeur maximale -->
+
+                    </div>
+
+                </div>
+                <div class="row my-4 justify-content-center">
+                    <div id="resultat_final2" style="display: none;" class="alert alert-info font-weight-light" role="alert">
+                        <!-- Affichage de la liste d'objets -->
+                   </div>
+
+
+                </div>
+
+            </div>
+             <div class="col-md-1"></div>
+              <div id="root" class="col-md-6 mt-5">
+                <div class="row justify-content-center">
+                        <h6 class="text-success">Veuillez introduire les informations suivantes :</h6><br>
+                    </div>
+                <div class="form-group my-4">
+                    
+                    <label for="poids_maximum">Poids maximal du sac à dos :</label>
+                    <input type="number" v-model="poids_maximum" class="form-control" aria-describedby="helpId"
+                        placeholder="0 unités" min="0">
+                    
+                </div>
+                <div class="form-row my-4">
+                    
+                    <div class="form-group col-md-6">
+                        <label for="nom"><i class="fa fa-book" aria-hidden="true"></i> Nom :</label>
+                        <input v-model="nom" type="text" class="form-control" id="nom" placeholder="Par exemple : Cahier">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="poids"><i class="fa fa-circle" aria-hidden="true"></i>
+Poids</label>
+                        <input v-model="poids" type="number" class="form-control" id="poids" min="0">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="valeur"><i class="fa fa-money" aria-hidden="true"></i>
+Valeur</label>
+                        <input v-model="valeur" type="number" class="form-control" id="valeur" min="0">
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="">Ajouter</label>
+                        <button class="btn btn-outline-success" @click="Ajouter_objet"><i class="fa fa-plus"></i></button>
+                    </div>
+                </div>
+                <div class="row my-4">
+                    <ul class="list-group" style="width : 100%">
+                        <li v-for="ob in obj"
+                            class="list-group-item d-flex justify-content-between align-items-center">
+                            <span class="text-success" style="font-weight: bold;">{{ob.nom}}</span>
+                            <span class="badge badge-info" style="font-weight: lighter;font-size: 14px;">Poids: {{ob.poids}}</span>
+                            <span class="badge badge-info" style="font-weight: lighter;font-size: 14px;">Valeur: {{ob.valeur}}</span>
+                            <button class="btn btn-outline-danger btn-sm" @click="Supp_objet(ob.id)"><i
+                                    class="fa fa-trash"></i></button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row my-4">
+                    <div class="col-md-3"></div>
+                 <div class="col-md-6">
+                     <button @click="Afficher_tout" type="button" class="btn-block btn-lgbtn btn-xl btn-light btn btn-outline-primary" style="font-weight: initial;"><i
+                            class="fa fa-shopping-bag"></i> Valider</button>
+                 </div>
+                <div class="col-md-3"></div>
+
+                </div>
+                
+            </div>
+
+        </div>
+        <!-- ----------------------------------------------- -->
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="content-section bg-primary text-white" style="background-image: url('../img/school.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;">
+    <div class="container text-center">
+      <h2 class="mb-4">Travail fait par le binôme : </h2>
+      <p>BOUZAOUIA Hafida Ines - 2CSSQ1</p>
+      <p>BENCHEIKH Chaïma Maroua - 2CSSQ1</p>
+    </div>
+  </section>
+
+ 
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded js-scroll-trigger" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/stylish-portfolio.min.js"></script>
+
+
+<!-- Liens rajoutés -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>
